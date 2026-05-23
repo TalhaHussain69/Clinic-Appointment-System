@@ -78,7 +78,7 @@ namespace App.WindowsApp
             // Title
             Label lblTitle = new Label
             {
-                Text = "Dashboard",
+                Text = "Dashboard - Clinic Appointment System",
                 Font = new Font("Segoe UI", 16, FontStyle.Bold),
                 ForeColor = Color.FromArgb(30, 30, 40),
                 AutoSize = true,
