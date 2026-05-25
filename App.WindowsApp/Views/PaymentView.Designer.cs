@@ -1,6 +1,6 @@
 ﻿namespace App.WindowsApp
 {
-    partial class DoctorView
+    partial class PaymentView
     {
         private System.ComponentModel.IContainer components = null;
 
@@ -27,172 +27,115 @@
             this.pnlSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lblTitle
-            // 
+
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(40)))));
-            this.lblTitle.Location = new System.Drawing.Point(26, 27);
-            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(30, 30, 40);
+            this.lblTitle.Location = new System.Drawing.Point(20, 20);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(138, 45);
-            this.lblTitle.TabIndex = 0;
-            this.lblTitle.Text = "Doctors";
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.lblTitle.Text = "Payments";
+
+            this.btnAdd.BackColor = System.Drawing.Color.FromArgb(59, 130, 246);
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnAdd.FlatAppearance.BorderSize = 0;
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(26, 80);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnAdd.Location = new System.Drawing.Point(20, 60);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(154, 43);
-            this.btnAdd.TabIndex = 1;
-            this.btnAdd.Text = "+ Add Doctor";
-            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Size = new System.Drawing.Size(120, 32);
+            this.btnAdd.Text = "+ Add Payment";
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnEdit
-            // 
+
             this.btnEdit.BackColor = System.Drawing.Color.White;
-            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnEdit.Location = new System.Drawing.Point(193, 80);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEdit.Location = new System.Drawing.Point(150, 60);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(96, 43);
-            this.btnEdit.TabIndex = 2;
+            this.btnEdit.Size = new System.Drawing.Size(75, 32);
             this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = false;
+            this.btnEdit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnDelete
-            // 
+
             this.btnDelete.BackColor = System.Drawing.Color.White;
-            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnDelete.ForeColor = System.Drawing.Color.Red;
-            this.btnDelete.Location = new System.Drawing.Point(302, 80);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnDelete.Location = new System.Drawing.Point(235, 60);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(96, 43);
-            this.btnDelete.TabIndex = 3;
+            this.btnDelete.Size = new System.Drawing.Size(75, 32);
             this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnRefresh
-            // 
+
             this.btnRefresh.BackColor = System.Drawing.Color.White;
-            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnRefresh.Location = new System.Drawing.Point(411, 80);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnRefresh.Location = new System.Drawing.Point(320, 60);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(96, 43);
-            this.btnRefresh.TabIndex = 4;
+            this.btnRefresh.Size = new System.Drawing.Size(75, 32);
             this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // pnlSearch
-            // 
+
             this.pnlSearch.BackColor = System.Drawing.Color.White;
+            this.pnlSearch.Location = new System.Drawing.Point(20, 105);
+            this.pnlSearch.Name = "pnlSearch";
+            this.pnlSearch.Size = new System.Drawing.Size(950, 45);
             this.pnlSearch.Controls.Add(this.lblSearch);
             this.pnlSearch.Controls.Add(this.txtSearch);
             this.pnlSearch.Controls.Add(this.lblStatus);
             this.pnlSearch.Controls.Add(this.cmbStatus);
-            this.pnlSearch.Location = new System.Drawing.Point(26, 140);
-            this.pnlSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pnlSearch.Name = "pnlSearch";
-            this.pnlSearch.Size = new System.Drawing.Size(1221, 60);
-            this.pnlSearch.TabIndex = 5;
-            // 
-            // lblSearch
-            // 
+
             this.lblSearch.AutoSize = true;
             this.lblSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblSearch.Location = new System.Drawing.Point(13, 17);
-            this.lblSearch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSearch.Location = new System.Drawing.Point(10, 13);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(64, 25);
-            this.lblSearch.TabIndex = 0;
             this.lblSearch.Text = "Search";
-            // 
-            // txtSearch
-            // 
+
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtSearch.Location = new System.Drawing.Point(84, 13);
-            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSearch.Location = new System.Drawing.Point(65, 10);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(256, 31);
-            this.txtSearch.TabIndex = 1;
+            this.txtSearch.Size = new System.Drawing.Size(200, 26);
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
-            // 
-            // lblStatus
-            // 
+
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblStatus.Location = new System.Drawing.Point(366, 17);
-            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStatus.Location = new System.Drawing.Point(285, 13);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(60, 25);
-            this.lblStatus.TabIndex = 2;
             this.lblStatus.Text = "Status";
-            // 
-            // cmbStatus
-            // 
+
             this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cmbStatus.Items.AddRange(new object[] {
-            "-- All --",
-            "Active",
-            "OnLeave",
-            "Inactive"});
-            this.cmbStatus.Location = new System.Drawing.Point(444, 12);
-            this.cmbStatus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbStatus.Items.AddRange(new object[] { "-- All --", "Paid", "Pending", "Cancelled", "Refunded" });
+            this.cmbStatus.Location = new System.Drawing.Point(345, 9);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(166, 33);
-            this.cmbStatus.TabIndex = 3;
+            this.cmbStatus.Size = new System.Drawing.Size(130, 26);
+            this.cmbStatus.SelectedIndex = 0;
             this.cmbStatus.SelectedIndexChanged += new System.EventHandler(this.cmbStatus_SelectedIndexChanged);
-            // 
-            // dgv
-            // 
+
             this.dgv.AllowUserToAddRows = false;
             this.dgv.AllowUserToDeleteRows = false;
-            this.dgv.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv.BackgroundColor = System.Drawing.Color.White;
             this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv.GridColor = System.Drawing.Color.FromArgb(229, 229, 229);
             this.dgv.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dgv.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(229)))), ((int)(((byte)(229)))), ((int)(((byte)(229)))));
-            this.dgv.Location = new System.Drawing.Point(26, 213);
-            this.dgv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgv.Location = new System.Drawing.Point(20, 160);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowHeadersVisible = false;
-            this.dgv.RowHeadersWidth = 62;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1221, 600);
-            this.dgv.TabIndex = 6;
-            // 
-            // DoctorView
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.dgv.Size = new System.Drawing.Size(950, 450);
+            this.dgv.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.BackColor = System.Drawing.Color.FromArgb(245, 245, 245);
+            this.Name = "PaymentView";
+            this.Size = new System.Drawing.Size(1000, 650);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnEdit);
@@ -200,15 +143,11 @@
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.pnlSearch);
             this.Controls.Add(this.dgv);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "DoctorView";
-            this.Size = new System.Drawing.Size(1286, 867);
             this.pnlSearch.ResumeLayout(false);
             this.pnlSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         private System.Windows.Forms.Label lblTitle;

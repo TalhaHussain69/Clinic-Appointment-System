@@ -13,6 +13,8 @@ namespace App.WindowsApp
         private IDoctorService _doctorService;
         private IPatientService _patientService;
         private IAppointmentService _appointmentService;
+        private IPaymentService _paymentService;
+        private IMedicalRecordService _medicalRecordService;
         private Button _activeBtn;
 
         public mainform()
@@ -25,6 +27,8 @@ namespace App.WindowsApp
             _doctorService = new DbDoctorService(_connectionString);
             _patientService = new DbPatientService(_connectionString);
             _appointmentService = new DbAppointmentService(_connectionString);
+            _paymentService = new DbPaymentService(_connectionString);
+            _medicalRecordService = new DbMedicalRecordService(_connectionString);
 
             SetActiveButton(btnDashboard);
             ShowDashboard();
@@ -225,6 +229,17 @@ namespace App.WindowsApp
         {
             SetActiveButton(btnAppointments);
             ShowView(new AppointmentView(_appointmentService, _patientService, _doctorService));
+        }
+        private void btnPayments_Click(object sender, EventArgs e)
+        {
+            SetActiveButton(btnPayments);
+            ShowView(new PaymentView(_paymentService, _appointmentService));
+        }
+
+        private void btnMedicalRecords_Click(object sender, EventArgs e)
+        {
+            SetActiveButton(btnMedicalRecords);
+            ShowView(new MedicalRecordView(_medicalRecordService, _patientService, _doctorService, _appointmentService));
         }
     }
 }

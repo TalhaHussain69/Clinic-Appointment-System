@@ -19,6 +19,8 @@
             this.btnPatients = new System.Windows.Forms.Button();
             this.btnDoctors = new System.Windows.Forms.Button();
             this.btnAppointments = new System.Windows.Forms.Button();
+            this.btnPayments = new System.Windows.Forms.Button();
+            this.btnMedicalRecords = new System.Windows.Forms.Button();
             this.pnlContent = new System.Windows.Forms.Panel();
             this.pnlNav.SuspendLayout();
             this.SuspendLayout();
@@ -33,6 +35,8 @@
             this.pnlNav.Controls.Add(this.btnPatients);
             this.pnlNav.Controls.Add(this.btnDoctors);
             this.pnlNav.Controls.Add(this.btnAppointments);
+            this.pnlNav.Controls.Add(this.btnPayments);
+            this.pnlNav.Controls.Add(this.btnMedicalRecords);
 
             // lblAppName
             this.lblAppName.AutoSize = false;
@@ -100,6 +104,34 @@
             this.btnAppointments.BackColor = System.Drawing.Color.Transparent;
             this.btnAppointments.Click += new System.EventHandler(this.btnAppointments_Click);
 
+            // btnPayments
+            this.btnPayments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPayments.FlatAppearance.BorderSize = 0;
+            this.btnPayments.ForeColor = System.Drawing.Color.FromArgb(180, 180, 190);
+            this.btnPayments.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnPayments.Location = new System.Drawing.Point(0, 238);
+            this.btnPayments.Name = "btnPayments";
+            this.btnPayments.Size = new System.Drawing.Size(200, 42);
+            this.btnPayments.Text = "  Payments";
+            this.btnPayments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPayments.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPayments.BackColor = System.Drawing.Color.Transparent;
+            this.btnPayments.Click += new System.EventHandler(this.btnPayments_Click);
+
+            // btnMedicalRecords
+            this.btnMedicalRecords.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMedicalRecords.FlatAppearance.BorderSize = 0;
+            this.btnMedicalRecords.ForeColor = System.Drawing.Color.FromArgb(180, 180, 190);
+            this.btnMedicalRecords.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.btnMedicalRecords.Location = new System.Drawing.Point(0, 280);
+            this.btnMedicalRecords.Name = "btnMedicalRecords";
+            this.btnMedicalRecords.Size = new System.Drawing.Size(200, 42);
+            this.btnMedicalRecords.Text = "  Medical Records";
+            this.btnMedicalRecords.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMedicalRecords.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMedicalRecords.BackColor = System.Drawing.Color.Transparent;
+            this.btnMedicalRecords.Click += new System.EventHandler(this.btnMedicalRecords_Click);
+
             // pnlContent
             this.pnlContent.BackColor = System.Drawing.Color.FromArgb(245, 245, 245);
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -128,5 +160,7 @@
         private System.Windows.Forms.Button btnDoctors;
         private System.Windows.Forms.Button btnAppointments;
         private System.Windows.Forms.Panel pnlContent;
+        private System.Windows.Forms.Button btnPayments;
+        private System.Windows.Forms.Button btnMedicalRecords;
     }
 }

@@ -151,18 +151,26 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Contracts\IAppointmentService.cs" />
     <Compile Include="Contracts\IDoctorService.cs" />
+    <Compile Include="Contracts\IMedicalRecordService.cs" />
     <Compile Include="Contracts\IPatientService.cs" />
+    <Compile Include="Contracts\IPaymentService.cs" />
     <Compile Include="Models\Appointment.cs" />
     <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\MedicalRecord.cs" />
     <Compile Include="Models\Patient.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DbAppointmentService.cs" />
     <Compile Include="Services\DbDoctorService.cs" />
+    <Compile Include="Services\DbMedicalRecordService.cs" />
     <Compile Include="Services\DbPatientService.cs" />
+    <Compile Include="Services\DbPaymentService.cs" />
     <Compile Include="Utilities\AppointmentStatus.cs" />
     <Compile Include="Utilities\AppointmentType.cs" />
     <Compile Include="Utilities\DoctorStatus.cs" />
     <Compile Include="Utilities\Gender.cs" />
+    <Compile Include="Utilities\PaymentMethod.cs" />
+    <Compile Include="Utilities\PaymentStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

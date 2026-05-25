@@ -68,11 +68,23 @@
     <Compile Include="Forms\DoctorForm.Designer.cs">
       <DependentUpon>DoctorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MedicalRecordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MedicalRecordForm.Designer.cs">
+      <DependentUpon>MedicalRecordForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\PatientForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\PatientForm.Designer.cs">
       <DependentUpon>PatientForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PaymentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PaymentForm.Designer.cs">
+      <DependentUpon>PaymentForm.cs</DependentUpon>
     </Compile>
     <Compile Include="mainform.cs">
       <SubType>Form</SubType>
@@ -94,11 +106,23 @@
     <Compile Include="Views\DoctorView.Designer.cs">
       <DependentUpon>DoctorView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\MedicalRecordView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\MedicalRecordView.Designer.cs">
+      <DependentUpon>MedicalRecordView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\PatientView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Views\PatientView.Designer.cs">
       <DependentUpon>PatientView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PaymentView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\PaymentView.Designer.cs">
+      <DependentUpon>PaymentView.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -109,6 +133,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\DoctorView.resx">
+      <DependentUpon>DoctorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\PaymentView.resx">
+      <DependentUpon>PaymentView.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
