@@ -11,7 +11,7 @@
 |---|---|
 | Muhammad Talha Hussain | F23BDOCS1E02140 |
 | Ahmad Aftab | F23BDOCS1E02151 |
-| Aamna Aftab | F23BDOCS1E2100 |
+| Aamna Aftab | F23BDOCS1E02100 |
 
 ---
 
