@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using App.core.Contracts;
 using App.core.Models;
+using App.core.Utilities;
 
 namespace App.WindowsApp
 {
@@ -11,23 +12,40 @@ namespace App.WindowsApp
         private IPaymentService _paymentService;
         private IAppointmentService _appointmentService;
         private Payment _payment;
-        private bool _isEdit;
+        private FormMode _mode;
         private List<Appointment> _appointments;
 
-        public PaymentForm(IPaymentService paymentService, IAppointmentService appointmentService, Payment payment)
+        public PaymentForm(IPaymentService paymentService, IAppointmentService appointmentService, Payment payment, FormMode mode)
         {
             _paymentService = paymentService;
             _appointmentService = appointmentService;
             _payment = payment;
-            _isEdit = payment != null;
+            _mode = mode;
             InitializeComponent();
             LoadAppointments();
 
-            if (_isEdit)
+            switch (_mode)
             {
-                lblTitle.Text = "Edit Payment";
-                btnSave.Text = "Update";
-                FillForm();
+                case FormMode.Add:
+                    lblTitle.Text = "Add Payment";
+                    btnSave.Text = "Save";
+                    break;
+                case FormMode.Edit:
+                    lblTitle.Text = "Edit Payment";
+                    btnSave.Text = "Update";
+                    FillForm();
+                    break;
+                case FormMode.View:
+                    lblTitle.Text = "View Payment";
+                    btnSave.Visible = false;
+                    cmbAppointment.Enabled = false;
+                    txtAmount.ReadOnly = true;
+                    cmbMethod.Enabled = false;
+                    cmbStatus.Enabled = false;
+                    dtpDate.Enabled = false;
+                    txtNotes.ReadOnly = true;
+                    FillForm();
+                    break;
             }
         }
 
@@ -37,7 +55,6 @@ namespace App.WindowsApp
             cmbAppointment.Items.Clear();
             foreach (var a in _appointments)
                 cmbAppointment.Items.Add(a.PatientName + " — " + a.DoctorName + " (" + a.AppDate.ToShortDateString() + ")");
-
             if (cmbAppointment.Items.Count > 0)
                 cmbAppointment.SelectedIndex = 0;
         }
@@ -45,13 +62,8 @@ namespace App.WindowsApp
         private void FillForm()
         {
             for (int i = 0; i < _appointments.Count; i++)
-            {
-                if (_appointments[i].Id == _payment.AppointmentId)
-                {
-                    cmbAppointment.SelectedIndex = i;
-                    break;
-                }
-            }
+                if (_appointments[i].Id == _payment.AppointmentId) { cmbAppointment.SelectedIndex = i; break; }
+
             txtAmount.Text = _payment.Amount.ToString();
             cmbMethod.SelectedItem = _payment.PaymentMethod;
             cmbStatus.SelectedItem = _payment.Status;
@@ -59,22 +71,24 @@ namespace App.WindowsApp
             txtNotes.Text = _payment.Notes ?? "";
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+
+        private void btnSave_Click_1(object sender, EventArgs e)
         {
             if (cmbAppointment.SelectedIndex < 0)
             {
-                MessageBox.Show("Please select an Appointment!", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select an Appointment!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             if (!decimal.TryParse(txtAmount.Text, out decimal amount))
             {
-                MessageBox.Show("Please enter a valid Amount!", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtAmount.Focus();
+                MessageBox.Show("Please enter a valid Amount!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (_isEdit)
+            if (_mode == FormMode.Edit)
             {
                 _payment.AppointmentId = _appointments[cmbAppointment.SelectedIndex].Id;
                 _payment.Amount = amount;
@@ -99,8 +113,7 @@ namespace App.WindowsApp
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
-
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnCancel_Click_1(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();

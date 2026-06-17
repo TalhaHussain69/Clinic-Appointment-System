@@ -26,122 +26,208 @@
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.lblNotes = new System.Windows.Forms.Label();
             this.txtNotes = new System.Windows.Forms.TextBox();
+            this.flpButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.flpButtons.SuspendLayout();
             this.SuspendLayout();
-
+            // 
+            // lblTitle
+            // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
-            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(30, 30, 40);
-            this.lblTitle.Location = new System.Drawing.Point(20, 18);
+            this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(40)))));
+            this.lblTitle.Location = new System.Drawing.Point(26, 24);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(194, 38);
+            this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "Add Payment";
-
+            // 
+            // lblAppointment
+            // 
             this.lblAppointment.AutoSize = true;
             this.lblAppointment.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblAppointment.Location = new System.Drawing.Point(20, 65);
+            this.lblAppointment.Location = new System.Drawing.Point(26, 87);
+            this.lblAppointment.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAppointment.Name = "lblAppointment";
+            this.lblAppointment.Size = new System.Drawing.Size(131, 25);
+            this.lblAppointment.TabIndex = 1;
             this.lblAppointment.Text = "Appointment *";
-
+            // 
+            // cmbAppointment
+            // 
             this.cmbAppointment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAppointment.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cmbAppointment.Location = new System.Drawing.Point(20, 82);
+            this.cmbAppointment.Location = new System.Drawing.Point(26, 109);
+            this.cmbAppointment.Margin = new System.Windows.Forms.Padding(4);
             this.cmbAppointment.Name = "cmbAppointment";
-            this.cmbAppointment.Size = new System.Drawing.Size(380, 26);
-
+            this.cmbAppointment.Size = new System.Drawing.Size(487, 33);
+            this.cmbAppointment.TabIndex = 2;
+            // 
+            // lblAmount
+            // 
             this.lblAmount.AutoSize = true;
             this.lblAmount.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblAmount.Location = new System.Drawing.Point(20, 120);
+            this.lblAmount.Location = new System.Drawing.Point(26, 160);
+            this.lblAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAmount.Name = "lblAmount";
+            this.lblAmount.Size = new System.Drawing.Size(128, 25);
+            this.lblAmount.TabIndex = 3;
             this.lblAmount.Text = "Amount (Rs.) *";
-
+            // 
+            // txtAmount
+            // 
             this.txtAmount.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtAmount.Location = new System.Drawing.Point(20, 137);
+            this.txtAmount.Location = new System.Drawing.Point(26, 183);
+            this.txtAmount.Margin = new System.Windows.Forms.Padding(4);
             this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(180, 26);
-
+            this.txtAmount.Size = new System.Drawing.Size(230, 31);
+            this.txtAmount.TabIndex = 4;
+            // 
+            // lblMethod
+            // 
             this.lblMethod.AutoSize = true;
             this.lblMethod.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblMethod.Location = new System.Drawing.Point(220, 120);
+            this.lblMethod.Location = new System.Drawing.Point(283, 160);
+            this.lblMethod.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMethod.Name = "lblMethod";
+            this.lblMethod.Size = new System.Drawing.Size(161, 25);
+            this.lblMethod.TabIndex = 5;
             this.lblMethod.Text = "Payment Method *";
-
+            // 
+            // cmbMethod
+            // 
             this.cmbMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMethod.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cmbMethod.Items.AddRange(new object[] { "Cash", "Card", "BankTransfer", "Online" });
-            this.cmbMethod.Location = new System.Drawing.Point(220, 137);
+            this.cmbMethod.Items.AddRange(new object[] {
+            "Cash",
+            "Card",
+            "BankTransfer",
+            "Online"});
+            this.cmbMethod.Location = new System.Drawing.Point(283, 183);
+            this.cmbMethod.Margin = new System.Windows.Forms.Padding(4);
             this.cmbMethod.Name = "cmbMethod";
-            this.cmbMethod.Size = new System.Drawing.Size(180, 26);
-            this.cmbMethod.SelectedIndex = 0;
-
+            this.cmbMethod.Size = new System.Drawing.Size(230, 33);
+            this.cmbMethod.TabIndex = 6;
+            // 
+            // lblStatus
+            // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblStatus.Location = new System.Drawing.Point(20, 175);
+            this.lblStatus.Location = new System.Drawing.Point(26, 233);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(73, 25);
+            this.lblStatus.TabIndex = 7;
             this.lblStatus.Text = "Status *";
-
+            // 
+            // cmbStatus
+            // 
             this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatus.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.cmbStatus.Items.AddRange(new object[] { "Paid", "Pending", "Cancelled", "Refunded" });
-            this.cmbStatus.Location = new System.Drawing.Point(20, 192);
+            this.cmbStatus.Items.AddRange(new object[] {
+            "Paid",
+            "Pending",
+            "Cancelled",
+            "Refunded"});
+            this.cmbStatus.Location = new System.Drawing.Point(26, 256);
+            this.cmbStatus.Margin = new System.Windows.Forms.Padding(4);
             this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(180, 26);
-            this.cmbStatus.SelectedIndex = 0;
-
+            this.cmbStatus.Size = new System.Drawing.Size(230, 33);
+            this.cmbStatus.TabIndex = 8;
+            // 
+            // lblDate
+            // 
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblDate.Location = new System.Drawing.Point(220, 175);
+            this.lblDate.Location = new System.Drawing.Point(283, 233);
+            this.lblDate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(135, 25);
+            this.lblDate.TabIndex = 9;
             this.lblDate.Text = "Payment Date *";
-
+            // 
+            // dtpDate
+            // 
             this.dtpDate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDate.Location = new System.Drawing.Point(220, 192);
+            this.dtpDate.Location = new System.Drawing.Point(283, 256);
+            this.dtpDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(180, 26);
-
+            this.dtpDate.Size = new System.Drawing.Size(230, 31);
+            this.dtpDate.TabIndex = 10;
+            // 
+            // lblNotes
+            // 
             this.lblNotes.AutoSize = true;
             this.lblNotes.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.lblNotes.Location = new System.Drawing.Point(20, 230);
+            this.lblNotes.Location = new System.Drawing.Point(26, 307);
+            this.lblNotes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNotes.Name = "lblNotes";
+            this.lblNotes.Size = new System.Drawing.Size(59, 25);
+            this.lblNotes.TabIndex = 11;
             this.lblNotes.Text = "Notes";
-
+            // 
+            // txtNotes
+            // 
             this.txtNotes.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtNotes.Location = new System.Drawing.Point(20, 247);
+            this.txtNotes.Location = new System.Drawing.Point(26, 329);
+            this.txtNotes.Margin = new System.Windows.Forms.Padding(4);
             this.txtNotes.Name = "txtNotes";
-            this.txtNotes.Size = new System.Drawing.Size(380, 26);
-
-            this.btnSave.BackColor = System.Drawing.Color.FromArgb(59, 130, 246);
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnSave.Location = new System.Drawing.Point(20, 300);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(100, 34);
-            this.btnSave.Text = "Save";
+            this.txtNotes.Size = new System.Drawing.Size(487, 31);
+            this.txtNotes.TabIndex = 12;
+            // 
+            // flpButtons
+            // 
+            this.flpButtons.AutoSize = true;
+            this.flpButtons.BackColor = System.Drawing.Color.Transparent;
+            this.flpButtons.Controls.Add(this.btnSave);
+            this.flpButtons.Controls.Add(this.btnCancel);
+            this.flpButtons.Location = new System.Drawing.Point(26, 390);
+            this.flpButtons.Margin = new System.Windows.Forms.Padding(4);
+            this.flpButtons.Name = "flpButtons";
+            this.flpButtons.Size = new System.Drawing.Size(487, 59);
+            this.flpButtons.TabIndex = 16;
+            this.flpButtons.WrapContents = false;
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(130)))), ((int)(((byte)(246)))));
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(0, 0);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(0, 0, 10, 0);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(129, 45);
+            this.btnSave.TabIndex = 0;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click_1);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnCancel.Location = new System.Drawing.Point(130, 300);
+            this.btnCancel.Location = new System.Drawing.Point(139, 0);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(0);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(100, 34);
+            this.btnCancel.Size = new System.Drawing.Size(129, 45);
+            this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel";
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click_1);
+            // 
+            // PaymentForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(424, 355);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "PaymentForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Payment";
+            this.ClientSize = new System.Drawing.Size(545, 473);
+            this.Controls.Add(this.flpButtons);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.lblAppointment);
             this.Controls.Add(this.cmbAppointment);
@@ -155,10 +241,17 @@
             this.Controls.Add(this.dtpDate);
             this.Controls.Add(this.lblNotes);
             this.Controls.Add(this.txtNotes);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnCancel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "PaymentForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Payment";
+            this.flpButtons.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private System.Windows.Forms.Label lblTitle;
@@ -174,6 +267,7 @@
         private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.Label lblNotes;
         private System.Windows.Forms.TextBox txtNotes;
+        private System.Windows.Forms.FlowLayoutPanel flpButtons;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
     }

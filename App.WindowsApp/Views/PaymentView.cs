@@ -1,8 +1,9 @@
-﻿using System;
+﻿using App.core.Contracts;
+using App.core.Models;
+using App.core.Utilities;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using App.core.Contracts;
-using App.core.Models;
 
 namespace App.WindowsApp
 {
@@ -79,46 +80,34 @@ namespace App.WindowsApp
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var form = new PaymentForm(_paymentService, _appointmentService, null);
-            if (form.ShowDialog() == DialogResult.OK)
-                LoadData();
+            var form = new PaymentForm(_paymentService, _appointmentService, null, FormMode.Add);
+            if (form.ShowDialog() == DialogResult.OK) LoadData();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dgv.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select a payment to edit.");
-                return;
-            }
+            if (dgv.SelectedRows.Count == 0) { MessageBox.Show("Please select a payment to edit."); return; }
             string id = dgv.SelectedRows[0].Cells["Id"].Value.ToString();
             var payment = _paymentService.GetById(id);
-            var form = new PaymentForm(_paymentService, _appointmentService, payment);
-            if (form.ShowDialog() == DialogResult.OK)
-                LoadData();
+            var form = new PaymentForm(_paymentService, _appointmentService, payment, FormMode.Edit);
+            if (form.ShowDialog() == DialogResult.OK) LoadData();
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            if (dgv.SelectedRows.Count == 0) { MessageBox.Show("Please select a payment to view."); return; }
+            string id = dgv.SelectedRows[0].Cells["Id"].Value.ToString();
+            var payment = _paymentService.GetById(id);
+            new PaymentForm(_paymentService, _appointmentService, payment, FormMode.View).ShowDialog();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgv.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select a payment to delete.");
-                return;
-            }
-
+            if (dgv.SelectedRows.Count == 0) { MessageBox.Show("Please select a payment to delete."); return; }
             string id = dgv.SelectedRows[0].Cells["Id"].Value.ToString();
-            var confirm = MessageBox.Show(
-                "Are you sure you want to delete this payment?",
-                "Confirm Delete",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
-
-            if (confirm == DialogResult.Yes)
-            {
-                _paymentService.Delete(id);
-                LoadData();
-            }
+            var confirm = MessageBox.Show("Are you sure you want to delete this payment?",
+                "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (confirm == DialogResult.Yes) { _paymentService.Delete(id); LoadData(); }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e) => LoadData();

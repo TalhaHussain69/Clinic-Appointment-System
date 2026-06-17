@@ -18,6 +18,7 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnView = new System.Windows.Forms.Button();
             this.pnlSearch = new System.Windows.Forms.Panel();
             this.lblSearch = new System.Windows.Forms.Label();
             this.txtSearch = new System.Windows.Forms.TextBox();
@@ -82,6 +83,17 @@
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+
+            // btnView
+            this.btnView.BackColor = System.Drawing.Color.White;
+            this.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnView.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnView.Location = new System.Drawing.Point(405, 60);
+            this.btnView.Name = "btnView";
+            this.btnView.Size = new System.Drawing.Size(75, 32);
+            this.btnView.Text = "View";
+            this.btnView.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnView.Click += new System.EventHandler(this.btnView_Click);
 
             // pnlSearch
             this.pnlSearch.BackColor = System.Drawing.Color.White;
@@ -156,6 +168,7 @@
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnRefresh);
+            this.Controls.Add(this.btnView);
             this.Controls.Add(this.pnlSearch);
             this.Controls.Add(this.dgv);
             this.pnlSearch.ResumeLayout(false);
@@ -170,6 +183,7 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnView;
         private System.Windows.Forms.Panel pnlSearch;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.TextBox txtSearch;

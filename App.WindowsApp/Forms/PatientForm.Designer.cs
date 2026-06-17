@@ -28,8 +28,10 @@
             this.cmbBloodGroup = new System.Windows.Forms.ComboBox();
             this.lblAddress = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
+            this.flpButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.flpButtons.SuspendLayout();
             this.SuspendLayout();
 
             // lblTitle
@@ -137,27 +139,38 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(380, 26);
 
+            // flpButtons — FlowLayoutPanel
+            this.flpButtons.Location = new System.Drawing.Point(20, 348);
+            this.flpButtons.Name = "flpButtons";
+            this.flpButtons.Size = new System.Drawing.Size(384, 44);
+            this.flpButtons.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
+            this.flpButtons.WrapContents = false;
+            this.flpButtons.AutoSize = true;
+            this.flpButtons.BackColor = System.Drawing.Color.Transparent;
+            this.flpButtons.Controls.Add(this.btnSave);
+            this.flpButtons.Controls.Add(this.btnCancel);
+
             // btnSave
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(59, 130, 246);
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.FlatAppearance.BorderSize = 0;
             this.btnSave.ForeColor = System.Drawing.Color.White;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnSave.Location = new System.Drawing.Point(20, 355);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(100, 34);
             this.btnSave.Text = "Save";
             this.btnSave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSave.Margin = new System.Windows.Forms.Padding(0, 0, 8, 0);
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
 
             // btnCancel
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnCancel.Location = new System.Drawing.Point(130, 355);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(100, 34);
             this.btnCancel.Text = "Cancel";
             this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(0);
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
 
             // PatientForm
@@ -186,8 +199,8 @@
             this.Controls.Add(this.cmbBloodGroup);
             this.Controls.Add(this.lblAddress);
             this.Controls.Add(this.txtAddress);
-            this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.flpButtons);
+            this.flpButtons.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
         }
@@ -207,6 +220,7 @@
         private System.Windows.Forms.ComboBox cmbBloodGroup;
         private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.FlowLayoutPanel flpButtons;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
     }

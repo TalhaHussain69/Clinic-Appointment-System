@@ -1,8 +1,9 @@
-﻿using System;
+﻿using App.core.Contracts;
+using App.core.Models;
+using App.core.Utilities;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
-using App.core.Contracts;
-using App.core.Models;
 
 namespace App.WindowsApp
 {
@@ -79,46 +80,35 @@ namespace App.WindowsApp
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var form = new MedicalRecordForm(_recordService, _patientService, _doctorService, _appointmentService, null);
-            if (form.ShowDialog() == DialogResult.OK)
-                LoadData();
+            var form = new MedicalRecordForm(_recordService, _patientService, _doctorService, _appointmentService, null, FormMode.Add);
+            if (form.ShowDialog() == DialogResult.OK) LoadData();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dgv.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select a record to edit.");
-                return;
-            }
+            if (dgv.SelectedRows.Count == 0) { MessageBox.Show("Please select a record to edit."); return; }
             string id = dgv.SelectedRows[0].Cells["Id"].Value.ToString();
             var record = _recordService.GetById(id);
-            var form = new MedicalRecordForm(_recordService, _patientService, _doctorService, _appointmentService, record);
-            if (form.ShowDialog() == DialogResult.OK)
-                LoadData();
+            var form = new MedicalRecordForm(_recordService, _patientService, _doctorService, _appointmentService, record, FormMode.Edit);
+            if (form.ShowDialog() == DialogResult.OK) LoadData();
+        }
+
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            if (dgv.SelectedRows.Count == 0) { MessageBox.Show("Please select a record to view."); return; }
+            string id = dgv.SelectedRows[0].Cells["Id"].Value.ToString();
+            var record = _recordService.GetById(id);
+            new MedicalRecordForm(_recordService, _patientService, _doctorService, _appointmentService, record, FormMode.View).ShowDialog();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgv.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Please select a record to delete.");
-                return;
-            }
-
+            if (dgv.SelectedRows.Count == 0) { MessageBox.Show("Please select a record to delete.");
+            return; }
             string id = dgv.SelectedRows[0].Cells["Id"].Value.ToString();
-            var confirm = MessageBox.Show(
-                "Are you sure you want to delete this record?",
-                "Confirm Delete",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning
-            );
-
-            if (confirm == DialogResult.Yes)
-            {
-                _recordService.Delete(id);
-                LoadData();
-            }
+            var confirm = MessageBox.Show("Are you sure you want to delete this record?",
+                "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (confirm == DialogResult.Yes) { _recordService.Delete(id); LoadData(); }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e) => LoadData();

@@ -10,20 +10,37 @@ namespace App.WindowsApp
     {
         private IDoctorService _service;
         private Doctor _doctor;
-        private bool _isEdit;
+        private FormMode _mode;
 
-        public DoctorForm(IDoctorService service, Doctor doctor)
+        public DoctorForm(IDoctorService service, Doctor doctor, FormMode mode)
         {
             _service = service;
             _doctor = doctor;
-            _isEdit = doctor != null;
+            _mode = mode;
             InitializeComponent();
 
-            if (_isEdit)
+            switch (_mode)
             {
-                lblTitle.Text = "Edit Doctor";
-                btnSave.Text = "Update";
-                FillForm();
+                case FormMode.Add:
+                    lblTitle.Text = "Add Doctor";
+                    btnSave.Text = "Save";
+                    break;
+                case FormMode.Edit:
+                    lblTitle.Text = "Edit Doctor";
+                    btnSave.Text = "Update";
+                    FillForm();
+                    break;
+                case FormMode.View:
+                    lblTitle.Text = "View Doctor";
+                    btnSave.Visible = false;
+                    txtName.ReadOnly = true;
+                    txtSpec.ReadOnly = true;
+                    txtPhone.ReadOnly = true;
+                    txtEmail.ReadOnly = true;
+                    txtFee.ReadOnly = true;
+                    cmbStatus.Enabled = false;
+                    FillForm();
+                    break;
             }
         }
 
@@ -37,39 +54,51 @@ namespace App.WindowsApp
             cmbStatus.SelectedItem = _doctor.Status.ToString();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+
+        private void btnCancel_Click_1(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void btnSave_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtName.Text))
             {
-                MessageBox.Show("Full Name is required!", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Full Name is required!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtName.Focus();
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtSpec.Text))
             {
-                MessageBox.Show("Specialization is required!", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Specialization is required!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtSpec.Focus();
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(txtPhone.Text))
             {
-                MessageBox.Show("Phone is required!", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Phone is required!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtPhone.Focus();
                 return;
             }
 
             if (!decimal.TryParse(txtFee.Text, out decimal fee))
             {
-                MessageBox.Show("Please enter a valid Fee!", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please enter a valid Fee!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtFee.Focus();
                 return;
             }
 
-            DoctorStatus status = (DoctorStatus)System.Enum.Parse(typeof(DoctorStatus), cmbStatus.SelectedItem.ToString());
+            DoctorStatus status = (DoctorStatus)System.Enum.Parse(
+                typeof(DoctorStatus), cmbStatus.SelectedItem.ToString());
 
-            if (_isEdit)
+            if (_mode == FormMode.Edit)
             {
                 _doctor.Name = txtName.Text.Trim();
                 _doctor.Specialization = txtSpec.Text.Trim();
@@ -92,12 +121,6 @@ namespace App.WindowsApp
             }
 
             this.DialogResult = DialogResult.OK;
-            this.Close();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
     }

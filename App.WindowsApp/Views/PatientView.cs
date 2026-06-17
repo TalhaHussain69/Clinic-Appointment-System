@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using App.core.Contracts;
@@ -10,6 +11,8 @@ namespace App.WindowsApp
     public partial class PatientView : UserControl
     {
         private IPatientService _service;
+        private BindingSource _bindingSource = new BindingSource();
+        private List<Patient> _patients = new List<Patient>();
 
         public PatientView(IPatientService service)
         {
@@ -21,39 +24,31 @@ namespace App.WindowsApp
 
         private void SetupGrid()
         {
-            dgv.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(30, 30, 40);
-            dgv.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(30, 30, 40);
+            dgv.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
             dgv.EnableHeadersVisualStyles = false;
-            dgv.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(248, 248, 252);
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 248, 252);
+            dgv.AutoGenerateColumns = false;
 
             dgv.Columns.Clear();
-            dgv.Columns.Add("Id", "ID");
-            dgv.Columns.Add("Name", "Name");
-            dgv.Columns.Add("Age", "Age");
-            dgv.Columns.Add("Gender", "Gender");
-            dgv.Columns.Add("Phone", "Phone");
-            dgv.Columns.Add("BloodGroup", "Blood Group");
-            dgv.Columns.Add("RegisteredOn", "Registered On");
+            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "Id", DataPropertyName = "Id", HeaderText = "ID" });
+            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "Name", DataPropertyName = "Name", HeaderText = "Name" });
+            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "Age", DataPropertyName = "Age", HeaderText = "Age" });
+            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "Gender", DataPropertyName = "Gender", HeaderText = "Gender" });
+            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "Phone", DataPropertyName = "Phone", HeaderText = "Phone" });
+            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "BloodGroup", DataPropertyName = "BloodGroup", HeaderText = "Blood Group" });
+            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "RegisteredOn", DataPropertyName = "RegisteredOn", HeaderText = "Registered On" });
+
+            dgv.DataSource = _bindingSource;
         }
 
         private void LoadData()
         {
-            dgv.Rows.Clear();
-            var patients = _service.GetAll();
-
-            foreach (var p in patients)
-            {
-                dgv.Rows.Add(
-                    p.Id,
-                    p.Name,
-                    p.Age,
-                    p.Gender.ToString(),
-                    p.Phone,
-                    p.BloodGroup ?? "-",
-                    p.RegisteredOn.ToShortDateString()
-                );
-            }
+            _patients = _service.GetAll();
+            _bindingSource.DataSource = null;
+            _bindingSource.DataSource = _patients;
+            dgv.Refresh();
         }
 
         private void SearchData()
@@ -62,57 +57,61 @@ namespace App.WindowsApp
             if (cmbGender.SelectedIndex == 1) gender = Gender.Male;
             if (cmbGender.SelectedIndex == 2) gender = Gender.Female;
 
-            dgv.Rows.Clear();
-            var results = _service.Search(txtSearch.Text, gender);
+            _patients = _service.Search(txtSearch.Text, gender);
+            _bindingSource.DataSource = null;
+            _bindingSource.DataSource = _patients;
+            dgv.Refresh();
+        }
 
-            foreach (var p in results)
-            {
-                dgv.Rows.Add(
-                    p.Id,
-                    p.Name,
-                    p.Age,
-                    p.Gender.ToString(),
-                    p.Phone,
-                    p.BloodGroup ?? "-",
-                    p.RegisteredOn.ToShortDateString()
-                );
-            }
+        private Patient GetSelectedPatient()
+        {
+            if (dgv.SelectedRows.Count == 0) return null;
+            return dgv.SelectedRows[0].DataBoundItem as Patient;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            var form = new PatientForm(_service, null);
+            var form = new PatientForm(_service, null, FormMode.Add);
             if (form.ShowDialog() == DialogResult.OK)
                 LoadData();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dgv.SelectedRows.Count == 0)
+            var patient = GetSelectedPatient();
+            if (patient == null)
             {
                 MessageBox.Show("Please select a patient to edit.");
                 return;
             }
-            string id = dgv.SelectedRows[0].Cells["Id"].Value.ToString();
-            var patient = _service.GetById(id);
-            var form = new PatientForm(_service, patient);
+            var form = new PatientForm(_service, patient, FormMode.Edit);
             if (form.ShowDialog() == DialogResult.OK)
                 LoadData();
         }
 
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            var patient = GetSelectedPatient();
+            if (patient == null)
+            {
+                MessageBox.Show("Please select a patient to view.");
+                return;
+            }
+            var form = new PatientForm(_service, patient, FormMode.View);
+            form.ShowDialog();
+        }
+
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgv.SelectedRows.Count == 0)
+            var patient = GetSelectedPatient();
+            if (patient == null)
             {
                 MessageBox.Show("Please select a patient to delete.");
                 return;
             }
 
-            string id = dgv.SelectedRows[0].Cells["Id"].Value.ToString();
-            string name = dgv.SelectedRows[0].Cells["Name"].Value.ToString();
-
             var confirm = MessageBox.Show(
-                $"Are you sure you want to delete {name}?",
+                $"Are you sure you want to delete {patient.Name}?",
                 "Confirm Delete",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning
@@ -120,24 +119,13 @@ namespace App.WindowsApp
 
             if (confirm == DialogResult.Yes)
             {
-                _service.Delete(id);
+                _service.Delete(patient.Id);
                 LoadData();
             }
         }
 
-        private void btnRefresh_Click(object sender, EventArgs e)
-        {
-            LoadData();
-        }
-
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-            SearchData();
-        }
-
-        private void cmbGender_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            SearchData();
-        }
+        private void btnRefresh_Click(object sender, EventArgs e) => LoadData();
+        private void txtSearch_TextChanged(object sender, EventArgs e) => SearchData();
+        private void cmbGender_SelectedIndexChanged(object sender, EventArgs e) => SearchData();
     }
 }

@@ -13,28 +13,45 @@ namespace App.WindowsApp
         private IPatientService _patientService;
         private IDoctorService _doctorService;
         private Appointment _appointment;
-        private bool _isEdit;
-
+        private FormMode _mode;
         private List<Patient> _patients;
         private List<Doctor> _doctors;
 
-        public AppointmentForm(IAppointmentService appointmentService, IPatientService patientService, IDoctorService doctorService, Appointment appointment)
+        public AppointmentForm(IAppointmentService appointmentService, IPatientService patientService, IDoctorService doctorService, Appointment appointment, FormMode mode)
         {
             _appointmentService = appointmentService;
             _patientService = patientService;
             _doctorService = doctorService;
             _appointment = appointment;
-            _isEdit = appointment != null;
-
+            _mode = mode;
             InitializeComponent();
             LoadPatients();
             LoadDoctors();
 
-            if (_isEdit)
+            switch (_mode)
             {
-                lblTitle.Text = "Edit Appointment";
-                btnSave.Text = "Update";
-                FillForm();
+                case FormMode.Add:
+                    lblTitle.Text = "New Appointment";
+                    btnSave.Text = "Save";
+                    break;
+                case FormMode.Edit:
+                    lblTitle.Text = "Edit Appointment";
+                    btnSave.Text = "Update";
+                    FillForm();
+                    break;
+                case FormMode.View:
+                    lblTitle.Text = "View Appointment";
+                    btnSave.Visible = false;
+                    cmbPatient.Enabled = false;
+                    cmbDoctor.Enabled = false;
+                    dtpDate.Enabled = false;
+                    cmbTime.Enabled = false;
+                    cmbType.Enabled = false;
+                    cmbStatus.Enabled = false;
+                    txtFee.ReadOnly = true;
+                    txtNotes.ReadOnly = true;
+                    FillForm();
+                    break;
             }
         }
 
@@ -44,7 +61,6 @@ namespace App.WindowsApp
             cmbPatient.Items.Clear();
             foreach (var p in _patients)
                 cmbPatient.Items.Add(p.Name);
-
             if (cmbPatient.Items.Count > 0)
                 cmbPatient.SelectedIndex = 0;
         }
@@ -55,7 +71,6 @@ namespace App.WindowsApp
             cmbDoctor.Items.Clear();
             foreach (var d in _doctors)
                 cmbDoctor.Items.Add(d.Name + " (" + d.Specialization + ")");
-
             if (cmbDoctor.Items.Count > 0)
                 cmbDoctor.SelectedIndex = 0;
         }
@@ -63,22 +78,10 @@ namespace App.WindowsApp
         private void FillForm()
         {
             for (int i = 0; i < _patients.Count; i++)
-            {
-                if (_patients[i].Id == _appointment.PatientId)
-                {
-                    cmbPatient.SelectedIndex = i;
-                    break;
-                }
-            }
+                if (_patients[i].Id == _appointment.PatientId) { cmbPatient.SelectedIndex = i; break; }
 
             for (int i = 0; i < _doctors.Count; i++)
-            {
-                if (_doctors[i].Id == _appointment.DoctorId)
-                {
-                    cmbDoctor.SelectedIndex = i;
-                    break;
-                }
-            }
+                if (_doctors[i].Id == _appointment.DoctorId) { cmbDoctor.SelectedIndex = i; break; }
 
             dtpDate.Value = _appointment.AppDate;
             cmbTime.SelectedItem = _appointment.AppTime;
@@ -88,35 +91,41 @@ namespace App.WindowsApp
             txtNotes.Text = _appointment.Notes ?? "";
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+       
+
+       
+
+       
+        private void btnSave_Click_1(object sender, EventArgs e)
         {
             if (cmbPatient.SelectedIndex < 0)
             {
-                MessageBox.Show("Please select a Patient!", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please Select a Patient!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (cmbDoctor.SelectedIndex < 0)
+            if(cmbDoctor.SelectedIndex < 0)
             {
-                MessageBox.Show("Please select a Doctor!", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                MessageBox.Show("Please Select a Doctor!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
-            decimal fee = 0;
-            if (!string.IsNullOrWhiteSpace(txtFee.Text) && !decimal.TryParse(txtFee.Text, out fee))
+            Decimal fee = 0;
+            if(!string.IsNullOrWhiteSpace(txtFee.Text) && !decimal.TryParse(txtFee.Text, out fee))
             {
-                MessageBox.Show("Please enter a valid Fee!", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtFee.Focus();
+                MessageBox.Show("Please enter a valid Fee!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
             string patientId = _patients[cmbPatient.SelectedIndex].Id;
             string doctorId = _doctors[cmbDoctor.SelectedIndex].Id;
 
-            AppointmentType type = (AppointmentType)System.Enum.Parse(typeof(AppointmentType), cmbType.SelectedItem.ToString());
-            AppointmentStatus status = (AppointmentStatus)System.Enum.Parse(typeof(AppointmentStatus), cmbStatus.SelectedItem.ToString());
+            AppointmentType type = (AppointmentType)System.Enum.Parse(
+                typeof(AppointmentType), cmbType.SelectedItem.ToString());
+            AppointmentStatus status = (AppointmentStatus)System.Enum.Parse(
+                typeof(AppointmentStatus), cmbStatus.SelectedItem.ToString());
 
-            if (_isEdit)
+            if (_mode == FormMode.Edit)
             {
                 _appointment.PatientId = patientId;
                 _appointment.DoctorId = doctorId;
@@ -144,12 +153,13 @@ namespace App.WindowsApp
 
             this.DialogResult = DialogResult.OK;
             this.Close();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
+        
+    }
+        private void btnCancel_Click_1(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
     }
 }

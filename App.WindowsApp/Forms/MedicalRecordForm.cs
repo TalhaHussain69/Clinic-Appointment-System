@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using App.core.Contracts;
 using App.core.Models;
+using App.core.Utilities;
 
 namespace App.WindowsApp
 {
@@ -13,27 +14,43 @@ namespace App.WindowsApp
         private IDoctorService _doctorService;
         private IAppointmentService _appointmentService;
         private MedicalRecord _record;
-        private bool _isEdit;
+        private FormMode _mode;
         private List<Patient> _patients;
         private List<Doctor> _doctors;
 
-        public MedicalRecordForm(IMedicalRecordService recordService, IPatientService patientService, IDoctorService doctorService, IAppointmentService appointmentService, MedicalRecord record)
+        public MedicalRecordForm(IMedicalRecordService recordService, IPatientService patientService, IDoctorService doctorService, IAppointmentService appointmentService, MedicalRecord record, FormMode mode)
         {
             _recordService = recordService;
             _patientService = patientService;
             _doctorService = doctorService;
             _appointmentService = appointmentService;
             _record = record;
-            _isEdit = record != null;
+            _mode = mode;
             InitializeComponent();
             LoadPatients();
             LoadDoctors();
 
-            if (_isEdit)
+            switch (_mode)
             {
-                lblTitle.Text = "Edit Medical Record";
-                btnSave.Text = "Update";
-                FillForm();
+                case FormMode.Add:
+                    lblTitle.Text = "Add Medical Record";
+                    btnSave.Text = "Save";
+                    break;
+                case FormMode.Edit:
+                    lblTitle.Text = "Edit Medical Record";
+                    btnSave.Text = "Update";
+                    FillForm();
+                    break;
+                case FormMode.View:
+                    lblTitle.Text = "View Medical Record";
+                    btnSave.Visible = false;
+                    cmbPatient.Enabled = false;
+                    cmbDoctor.Enabled = false;
+                    txtDiagnosis.ReadOnly = true;
+                    txtPrescription.ReadOnly = true;
+                    txtNotes.ReadOnly = true;
+                    FillForm();
+                    break;
             }
         }
 
@@ -70,16 +87,18 @@ namespace App.WindowsApp
             txtNotes.Text = _record.Notes ?? "";
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+
+        private void btnSave_Click_1(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtDiagnosis.Text))
             {
-                MessageBox.Show("Diagnosis is required!", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Diagnosis is required!", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtDiagnosis.Focus();
                 return;
             }
 
-            if (_isEdit)
+            if (_mode == FormMode.Edit)
             {
                 _record.PatientId = _patients[cmbPatient.SelectedIndex].Id;
                 _record.DoctorId = _doctors[cmbDoctor.SelectedIndex].Id;
@@ -104,7 +123,7 @@ namespace App.WindowsApp
             this.Close();
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnCancel_Click_1(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
