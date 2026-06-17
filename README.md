@@ -310,3 +310,4 @@ The project strictly follows the **3-Layer Architecture** pattern:
 - **Course:** Advanced Programming (COSC-5136)
 - **Semester:** Spring 2026
 - **Domain:** Clinic Appointment Management
+- **Department:** Computer Science
